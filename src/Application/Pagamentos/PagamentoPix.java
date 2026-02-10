@@ -1,4 +1,10 @@
-package Pagamento;
+package Application.Pagamentos;
 
-public class PagamentoPix {
+import Application.ClientePagamentoModel;
+
+public class PagamentoPix implements PagamentoInterface{
+    @Override
+    public void pagar(ClientePagamentoModel cliente) {
+        System.out.println(cliente.getNome() + " Pagando via Pix");
+    }
 }

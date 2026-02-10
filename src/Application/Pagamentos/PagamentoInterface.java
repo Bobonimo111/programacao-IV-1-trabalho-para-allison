@@ -1,5 +1,7 @@
-package Pagamento;
+package Application.Pagamentos;
+
+import Application.ClientePagamentoModel;
 
 public interface PagamentoInterface {
-    void pagar(ClienteModel cliente);
+    void pagar(ClientePagamentoModel cliente);
 }

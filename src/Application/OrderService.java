@@ -1,24 +1,34 @@
-package Pagamento;
+package Application;
+
+import Application.Pagamentos.PagamentoService;
+import Application.entity.PedidosEntity;
+import Application.estoque.EstoqueService;
+import Application.messages.Mensagem;
+import Application.messages.MensagemEmail;
 
 import java.util.List;
 
 class OrderService {
     public void ProcessOrder(String customerEmail, List<String> items, String paymentType)
-    {	// cálculo simples
-        double total = 0; for (String item : items) { total += 10.0;
-    }
-        // pagamento
-        if (paymentType.equals("credit")) {
-            System.out.println("Pagando com cartão de crédito: " + total);
-        } else if (paymentType.equals("pix")) {
-            System.out.println("Pagando com PIX: " + total);
-        } else if (paymentType.equals("boleto")) {
-            System.out.println("Pagando com boleto: " + total);
+    {	// Persistencia fake
+        EstoqueService estoque = new EstoqueService();
+        // Nome um pouco mais coeso
+        double valorTotalDaOrdem = 0;
+        for (String item : items) {
+            valorTotalDaOrdem += estoque.getValueByName(item);
         }
+
+        //Pagamento utilizando strategy e facade implementando
+        //Open Close principal
+        PagamentoService ps = new PagamentoService();
+        ps.processar(new ClientePagamentoModel("William",));
+
+        // Criando classes para responsabilidade unica
         // persistência fake
-        System.out.println("Salvando pedido no banco");
+        new PedidosEntity().salvarNobancoDeDados();
         // envio de email
-        System.out.println("Enviando email para " + customerEmail);
+        Mensagem msg = new MensagemEmail();
+        msg.enviar("pedido efetuado",customerEmail);
     }
 }
 

@@ -1,13 +1,13 @@
-package Application;
+package Application.models;
 
 public class ClientePagamentoModel {
-    private String nome;
+    private String email;
     private double valor;
     private String paymentType;
 
 
-    ClientePagamentoModel(String nome, double valor, String paymentType) {
-        this.nome = nome;
+    public ClientePagamentoModel(String email, double valor, String paymentType) {
+        this.email = email;
         this.valor = valor;
         this.paymentType = paymentType;
     }
@@ -28,10 +28,10 @@ public class ClientePagamentoModel {
         this.valor = valor;
     }
 
-    public String getNome() {
-        return nome;
+    public String getEmail() {
+        return email;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

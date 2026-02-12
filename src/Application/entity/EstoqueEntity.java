@@ -1,11 +1,12 @@
-package Application.estoque;
+package Application.entity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class EstoqueService {
+public class EstoqueEntity {
     private Map<String,Double> estoque;
-    public EstoqueService(){
+
+    public EstoqueEntity(){
         this.estoque = new HashMap<String,Double>();
         this.populate();
     }
